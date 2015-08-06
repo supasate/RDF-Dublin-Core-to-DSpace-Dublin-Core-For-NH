@@ -27,6 +27,7 @@ with open(filename, "r") as f:
     content = re.sub(r'element="date"', r'element="date" qualifier="issued"', content)
     content = re.sub(r'element="identifier"', r'element="relation" qualifier="uri"', content)
     content = re.sub(r'element="format"', r'element="format" qualifier="mimetype"', content)
+    content = re.sub(r'element="type">.*?</dcvalue>', r'element="type">เอกสารสิ่งพิมพ์</dcvalue>', content)
 
     # Create Simple Archive Structure to be imported to DSpace
     os.mkdir(ARCHIVE_DIR_NAME)
