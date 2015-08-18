@@ -19,3 +19,6 @@ archive_directory
   |     |-- contents
   |...
 ```
+
+## Note
+Use [MarcEdit with MARC => RDF Dublin Core XSLT](marcedit.reeset.net/downloads) to convert MARC format (.mrc) into RDF Dublin Core first. 
