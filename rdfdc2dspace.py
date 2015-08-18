@@ -4,7 +4,8 @@ import sys
 import re
 import os
 
-ARCHIVE_DIR_NAME = 'archive_directory'
+BOOK_ARCHIVE_DIR_NAME = 'book_archive_directory'
+VDO_ARCHIVE_DIR_NAME = 'vdo_archive_directory'
 DUBLIN_CORE_FILE_NAME = 'dublin_core.xml'
 CONTENTS_FILE_NAME = 'contents'
 
@@ -31,11 +32,22 @@ with open(filename, "r") as f:
     content = re.sub(r'element="language">tha</dcvalue>', r'element="language">th</dcvalue>', content)
 
     # Create Simple Archive Structure to be imported to DSpace
-    os.mkdir(ARCHIVE_DIR_NAME)
+    os.mkdir(BOOK_ARCHIVE_DIR_NAME)
+    os.mkdir(VDO_ARCHIVE_DIR_NAME)
 
     # Extract each item to create its own directory structure
+    book_count = 0
+    vdo_count = 0
     for idx, item in enumerate(re.findall(r'(<dublin_core>.*?</dublin_core>)', content, flags=re.DOTALL)):
-        item_dir = ARCHIVE_DIR_NAME + '/item_' + str(idx + 1).zfill(5)
+        if 'healthstation.in.th' in item:
+            archive_dir = VDO_ARCHIVE_DIR_NAME
+            vdo_count += 1
+            count = vdo_count
+        else:
+            archive_dir = BOOK_ARCHIVE_DIR_NAME
+            book_count += 1
+            count = book_count
+        item_dir = archive_dir + '/item_' + str(count).zfill(5)
         os.mkdir(item_dir)
         with open(item_dir + '/'+ DUBLIN_CORE_FILE_NAME, 'w') as xml_file:
             xml_file.write('<?xml version="1.0" encoding="utf-8"?>\n')
