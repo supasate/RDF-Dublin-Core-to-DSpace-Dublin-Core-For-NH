@@ -43,6 +43,8 @@ with open(filename, "r") as f:
             archive_dir = VDO_ARCHIVE_DIR_NAME
             vdo_count += 1
             count = vdo_count
+            item = re.sub(r'element="type">.*?</dcvalue>', r'element="type">สื่อมัลติมีเดีย</dcvalue>', item)
+            item = re.sub(r'</dublin_core>', r'  <dcvalue element="subject" qualifier="classification">VDO</dcvalue>\n</dublin_core>', item)
         else:
             archive_dir = BOOK_ARCHIVE_DIR_NAME
             book_count += 1
