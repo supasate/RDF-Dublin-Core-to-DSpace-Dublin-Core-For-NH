@@ -22,3 +22,6 @@ archive_directory
 
 ## Note
 Use [MarcEdit with MARC => RDF Dublin Core XSLT](marcedit.reeset.net/downloads) to convert MARC format (.mrc) into RDF Dublin Core first. 
+To import into Dspace:
+- zip at archive_directory level into archive_directory.zip
+- Login to Dspace and use Batch Import (ZIP) menu at Administrative menu
